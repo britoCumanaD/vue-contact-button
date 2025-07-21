@@ -2,10 +2,10 @@
   "name": "vue-contact-button",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/contact-button.umd.js",
+  "main": "dist/vue-contact-button.umd.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp dist/vue-contact-button.css dist/style.css",
     "preview": "vite preview"
   },
   "keywords": [],
@@ -19,18 +19,21 @@
     "@vitejs/plugin-vue": "^6.0.0",
     "typescript": "^5.8.3",
     "vite": "^7.0.0",
+    "vite-plugin-dts": "^4.5.4",
     "vue-tsc": "^2.2.10"
   },
   "files": [
     "dist"
   ],
-  "module": "./dist/contact-button.es.js",
-  "types": "./dist/index.d.ts",
+  "module": "dist/vue-contact-button.es.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "import": "./dist/vue-contact-button.es.js",
-      "require": "./dist/vue-contact-button.umd.js"
-    }
+      "require": "./dist/vue-contact-button.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
   }
 }

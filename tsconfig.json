@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "strict": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "jsx": "preserve",
+      "declaration": true,
+      "declarationDir": "dist",
+      "sourceMap": false,
+      "resolveJsonModule": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"]
+      },
+      "types": ["vite/client"]
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
+  }
+  
