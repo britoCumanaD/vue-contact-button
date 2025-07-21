@@ -14,7 +14,7 @@
         :maxlength="maxChars"
         class="chat-textarea"
         :class="{ 'dark-mode': isDarkMode }"
-        placeholder="Escribe tu mensaje..."
+        :placeholder="t.chatWindow.placeholder"
         rows="3"
       />
       <div class="char-counter" :class="{ 'dark-mode': isDarkMode }">
@@ -32,25 +32,28 @@
         <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Enviar
+      {{ t.chatWindow.send }}
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch } from 'vue'
+import { defineProps, defineEmits, ref, computed } from 'vue'
 import ContactSelector from './ContactSelector.vue'
+import { getTranslation } from '../utils/i18n'
 
 const props = defineProps({
   contacts: { type: Array as () => string[], required: true },
   maxChars: { type: Number, default: 200 },
-  isDarkMode: { type: Boolean, default: false }
+  isDarkMode: { type: Boolean, default: false },
+  lang: { type: String, default: 'en' }
 })
 
 const emit = defineEmits(['send'])
 
 const selectedContact = ref(props.contacts[0])
 const message = ref('')
+const t = computed(() => getTranslation(props.lang))
 
 const handleSend = () => {
   if (message.value.trim()) {

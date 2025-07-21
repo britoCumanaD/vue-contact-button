@@ -23,30 +23,27 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch } from 'vue'
+import { defineProps, defineEmits, ref, watch, computed } from 'vue'
+import { getTranslation } from '../utils/i18n'
 
 const props = defineProps({
   contacts: { type: Array as () => string[], required: true },
   modelValue: { type: String, required: true },
-  isDarkMode: { type: Boolean, default: false }
+  isDarkMode: { type: Boolean, default: false },
+  lang: { type: String, default: 'en' }
 })
 
 const emit = defineEmits(['update:modelValue'])
 
 const selectedContact = ref(props.modelValue)
+const t = computed(() => getTranslation(props.lang))
 
 watch(() => props.modelValue, (newValue) => {
   selectedContact.value = newValue
 })
 
 const formatContactOption = (option: string) => {
-  const formatMap: Record<string, string> = {
-    'email': '📧 Email',
-    'whatsapp': '📱 WhatsApp',
-    'telegram': '✈️ Telegram',
-    'phone': '📞 Teléfono',
-    'linkedin': '💼 LinkedIn'
-  }
-  return formatMap[option] || option.charAt(0).toUpperCase() + option.slice(1)
+  const translations = t.value.contactSelector
+  return translations[option as keyof typeof translations] || option.charAt(0).toUpperCase() + option.slice(1)
 }
 </script>

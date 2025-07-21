@@ -10,6 +10,7 @@
       :mainColor="mainColor"
       :secondaryColor="secondaryColor"
       :isDarkMode="isDarkMode"
+      :lang="lang"
     />
 
     <button
@@ -48,6 +49,7 @@
       :contacts="contacts"
       :maxChars="maxChars"
       :isDarkMode="isDarkMode"
+      :lang="lang"
       @send="handleSend"
     />
   </div>
@@ -79,6 +81,7 @@ const props = defineProps({
   maxChars: { type: Number, default: 200 },
   darkMode: { type: Boolean, default: false },
   autoDetectTheme: { type: Boolean, default: true },
+  lang: { type: String, default: "en" },
 });
 
 const emit = defineEmits(["openContact", "send"]);

@@ -60,6 +60,10 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         type: BooleanConstructor;
         default: boolean;
     };
+    lang: {
+        type: StringConstructor;
+        default: string;
+    };
 }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     send: (...args: any[]) => void;
     openContact: (...args: any[]) => void;
@@ -116,12 +120,17 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         type: BooleanConstructor;
         default: boolean;
     };
+    lang: {
+        type: StringConstructor;
+        default: string;
+    };
 }>> & Readonly<{
     onSend?: ((...args: any[]) => any) | undefined;
     onOpenContact?: ((...args: any[]) => any) | undefined;
 }>, {
     mainColor: string;
     secondaryColor: string;
+    lang: string;
     label: string;
     bottom: string;
     left: string;

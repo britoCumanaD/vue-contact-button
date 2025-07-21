@@ -11,6 +11,7 @@
       class="float-text-close"
       @click="dismissFloatText"
       :class="{ 'dark-mode': isDarkMode }"
+      :title="t.floatText.close"
     >
       ×
     </button>
@@ -19,16 +20,19 @@
 
 <script setup lang="ts">
 import { defineProps, computed, ref, onMounted } from 'vue'
+import { getTranslation } from '../utils/i18n'
 
 const props = defineProps({
   text: { type: String, required: true },
   mainColor: { type: String, default: '#00258b' },
   secondaryColor: { type: String, default: '#ffffff' },
-  isDarkMode: { type: Boolean, default: false }
+  isDarkMode: { type: Boolean, default: false },
+  lang: { type: String, default: 'en' }
 })
 
 const isDismissed = ref(false)
 const storageKey = `float-text-dismissed-${props.text}`
+const t = computed(() => getTranslation(props.lang))
 
 const floatTextStyle = computed(() => ({
   background: props.isDarkMode 
