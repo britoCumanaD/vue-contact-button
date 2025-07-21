@@ -73,12 +73,31 @@
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
+.contact-button.dark-mode {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.contact-button.dark-mode:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .contact-button {
     width: 48px;
     height: 48px;
     padding: 0.875rem;
+  }
+  
+  .contact-button-close {
+    width: 36px;
+    height: 36px;
+    top: -6px;
+    left: -12px;
+  }
+  
+  .contact-button-wrapper {
+    gap: 0.5rem;
   }
   
   .contact-button-close {

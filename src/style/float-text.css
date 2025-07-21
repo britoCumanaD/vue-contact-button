@@ -54,6 +54,16 @@
   color: #fff;
 }
 
+.float-text-close.dark-mode {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+}
+
+.float-text-close.dark-mode:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -69,6 +79,12 @@
   .float-text {
     font-size: 0.8rem;
     padding: 0.5rem 0.75rem;
+  }
+  
+  .float-text-close {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
   }
   
   .float-text-close {
