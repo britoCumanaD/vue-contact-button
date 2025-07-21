@@ -1,7 +1,6 @@
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
-        floatText?(_: {}): any;
         default?(_: {}): any;
     };
     refs: {};
@@ -53,9 +52,17 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         type: NumberConstructor;
         default: number;
     };
+    darkMode: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    autoDetectTheme: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-    openContact: (...args: any[]) => void;
     send: (...args: any[]) => void;
+    openContact: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     label: {
         type: StringConstructor;
@@ -101,21 +108,31 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         type: NumberConstructor;
         default: number;
     };
+    darkMode: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    autoDetectTheme: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }>> & Readonly<{
-    onOpenContact?: ((...args: any[]) => any) | undefined;
     onSend?: ((...args: any[]) => any) | undefined;
+    onOpenContact?: ((...args: any[]) => any) | undefined;
 }>, {
+    mainColor: string;
+    secondaryColor: string;
     label: string;
-    chatInWindow: boolean;
-    contacts: string[];
-    floatText: string;
-    top: string;
     bottom: string;
     left: string;
     right: string;
-    mainColor: string;
-    secondaryColor: string;
+    top: string;
+    contacts: string[];
     maxChars: number;
+    chatInWindow: boolean;
+    floatText: string;
+    darkMode: boolean;
+    autoDetectTheme: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;

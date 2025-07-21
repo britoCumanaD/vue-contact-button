@@ -1,16 +1,173 @@
-import { defineComponent as C, ref as d, computed as k, createElementBlock as n, openBlock as l, normalizeStyle as u, renderSlot as v, createCommentVNode as m, createElementVNode as s, toDisplayString as f, normalizeClass as b, withDirectives as y, Fragment as S, renderList as L, vModelSelect as B, vModelText as T } from "vue";
-const I = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20viewBox='0%200%2024%2024'%20stroke='currentColor'%20stroke-width='1.5'%20%3e%3cpath%20stroke-linecap='round'%20stroke-linejoin='round'%20d='M7%208h10M7%2012h6m-6%208l-4-4H3a1%201%200%2001-1-1V5a1%201%200%20011-1h18a1%201%200%20011%201v10a1%201%200%2001-1%201H9l-2%202z'%20/%3e%3c/svg%3e", M = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%20width='50px'%20height='50px'%3e%3cpath%20d='M%209.15625%206.3125%20L%206.3125%209.15625%20L%2022.15625%2025%20L%206.21875%2040.96875%20L%209.03125%2043.78125%20L%2025%2027.84375%20L%2040.9375%2043.78125%20L%2043.78125%2040.9375%20L%2027.84375%2025%20L%2043.6875%209.15625%20L%2040.84375%206.3125%20L%2025%2022.15625%20Z'/%3e%3c/svg%3e", V = {
+import { defineComponent as g, ref as v, computed as x, onMounted as D, createElementBlock as f, createCommentVNode as p, openBlock as u, normalizeClass as d, createElementVNode as n, normalizeStyle as M, toDisplayString as y, watch as B, withDirectives as S, Fragment as T, renderList as V, vModelSelect as I, createBlock as b, vModelText as L, createTextVNode as $, renderSlot as j } from "vue";
+const E = /* @__PURE__ */ g({
+  __name: "FloatText",
+  props: {
+    text: { type: String, required: !0 },
+    mainColor: { type: String, default: "#00258b" },
+    secondaryColor: { type: String, default: "#ffffff" },
+    isDarkMode: { type: Boolean, default: !1 }
+  },
+  setup(e) {
+    const r = e, o = v(!1), l = `float-text-dismissed-${r.text}`, a = x(() => ({
+      background: r.isDarkMode ? "rgba(255, 255, 255, 0.1)" : r.mainColor,
+      color: r.isDarkMode ? "#ffffff" : r.secondaryColor,
+      backdropFilter: r.isDarkMode ? "blur(10px)" : "none",
+      border: r.isDarkMode ? "1px solid rgba(255, 255, 255, 0.2)" : "none"
+    })), t = () => {
+      o.value = !0, sessionStorage.setItem(l, "true");
+    };
+    return D(() => {
+      sessionStorage.getItem(l) === "true" && (o.value = !0);
+    }), (s, i) => e.text && !o.value ? (u(), f("div", {
+      key: 0,
+      class: d(["float-text-container", { "dark-mode": e.isDarkMode }])
+    }, [
+      n("span", {
+        class: "float-text",
+        style: M(a.value)
+      }, y(e.text), 5),
+      n("button", {
+        class: d(["float-text-close", { "dark-mode": e.isDarkMode }]),
+        onClick: t
+      }, " × ", 2)
+    ], 2)) : p("", !0);
+  }
+}), C = (e, r) => {
+  const o = e.__vccOpts || e;
+  for (const [l, a] of r)
+    o[l] = a;
+  return o;
+}, F = /* @__PURE__ */ C(E, [["__scopeId", "data-v-90e46ec0"]]), W = ["value"], A = /* @__PURE__ */ g({
+  __name: "ContactSelector",
+  props: {
+    contacts: { type: Array, required: !0 },
+    modelValue: { type: String, required: !0 },
+    isDarkMode: { type: Boolean, default: !1 }
+  },
+  emits: ["update:modelValue"],
+  setup(e, { emit: r }) {
+    const o = e, l = v(o.modelValue);
+    B(() => o.modelValue, (t) => {
+      l.value = t;
+    });
+    const a = (t) => ({
+      email: "📧 Email",
+      whatsapp: "📱 WhatsApp",
+      telegram: "✈️ Telegram",
+      phone: "📞 Teléfono",
+      linkedin: "💼 LinkedIn"
+    })[t] || t.charAt(0).toUpperCase() + t.slice(1);
+    return (t, s) => (u(), f("div", {
+      class: d(["contact-selector", { "dark-mode": e.isDarkMode }])
+    }, [
+      S(n("select", {
+        "onUpdate:modelValue": s[0] || (s[0] = (i) => l.value = i),
+        class: d(["contact-select", { "dark-mode": e.isDarkMode }]),
+        onChange: s[1] || (s[1] = (i) => t.$emit("update:modelValue", l.value))
+      }, [
+        (u(!0), f(T, null, V(e.contacts, (i) => (u(), f("option", {
+          key: i,
+          value: i
+        }, y(a(i)), 9, W))), 128))
+      ], 34), [
+        [I, l.value]
+      ]),
+      n("div", {
+        class: d(["select-arrow", { "dark-mode": e.isDarkMode }])
+      }, s[2] || (s[2] = [
+        n("svg", {
+          width: "12",
+          height: "8",
+          viewBox: "0 0 12 8",
+          fill: "none"
+        }, [
+          n("path", {
+            d: "M1 1L6 6L11 1",
+            stroke: "currentColor",
+            "stroke-width": "2",
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round"
+          })
+        ], -1)
+      ]), 2)
+    ], 2));
+  }
+}), N = /* @__PURE__ */ C(A, [["__scopeId", "data-v-6f92f3f5"]]), q = { class: "message-input-container" }, z = ["maxlength"], U = ["disabled"], H = /* @__PURE__ */ g({
+  __name: "ChatWindow",
+  props: {
+    contacts: { type: Array, required: !0 },
+    maxChars: { type: Number, default: 200 },
+    isDarkMode: { type: Boolean, default: !1 }
+  },
+  emits: ["send"],
+  setup(e, { emit: r }) {
+    const o = e, l = r, a = v(o.contacts[0]), t = v(""), s = () => {
+      t.value.trim() && (l("send", { contact: a.value, message: t.value }), t.value = "");
+    };
+    return (i, c) => (u(), f("div", {
+      class: d(["chat-window", { "dark-mode": e.isDarkMode }])
+    }, [
+      e.contacts.length > 1 ? (u(), b(N, {
+        key: 0,
+        contacts: e.contacts,
+        modelValue: a.value,
+        "onUpdate:modelValue": [
+          c[0] || (c[0] = (m) => a.value = m),
+          c[1] || (c[1] = (m) => a.value = m)
+        ],
+        isDarkMode: e.isDarkMode
+      }, null, 8, ["contacts", "modelValue", "isDarkMode"])) : p("", !0),
+      n("div", q, [
+        S(n("textarea", {
+          "onUpdate:modelValue": c[2] || (c[2] = (m) => t.value = m),
+          maxlength: e.maxChars,
+          class: d(["chat-textarea", { "dark-mode": e.isDarkMode }]),
+          placeholder: "Escribe tu mensaje...",
+          rows: "3"
+        }, null, 10, z), [
+          [L, t.value]
+        ]),
+        n("div", {
+          class: d(["char-counter", { "dark-mode": e.isDarkMode }])
+        }, y(t.value.length) + "/" + y(e.maxChars), 3)
+      ]),
+      n("button", {
+        class: d(["chat-send", { "dark-mode": e.isDarkMode, disabled: !t.value.trim() }]),
+        disabled: !t.value.trim(),
+        onClick: s
+      }, c[3] || (c[3] = [
+        n("svg", {
+          width: "16",
+          height: "16",
+          viewBox: "0 0 24 24",
+          fill: "none"
+        }, [
+          n("path", {
+            d: "M22 2L11 13",
+            stroke: "currentColor",
+            "stroke-width": "2",
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round"
+          }),
+          n("path", {
+            d: "M22 2L15 22L11 13L2 9L22 2Z",
+            stroke: "currentColor",
+            "stroke-width": "2",
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round"
+          })
+        ], -1),
+        $(" Enviar ")
+      ]), 10, U)
+    ], 2));
+  }
+}), O = /* @__PURE__ */ C(H, [["__scopeId", "data-v-cb758fbf"]]), Q = {
   key: 1,
-  src: M,
-  width: "14",
-  height: "14"
-}, z = {
-  key: 1,
-  class: "chat-window"
-}, E = {
-  key: 0,
-  class: "contact-options"
-}, N = ["value", "textContent"], W = ["maxlength"], j = /* @__PURE__ */ C({
+  width: "16",
+  height: "16",
+  viewBox: "0 0 24 24",
+  fill: "none"
+}, K = /* @__PURE__ */ g({
   __name: "ContactButton",
   props: {
     label: { type: String, default: "" },
@@ -18,91 +175,102 @@ const I = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20fill
     contacts: { type: Array, default: () => ["email"] },
     floatText: { type: String, default: "" },
     top: { type: String, default: "" },
-    bottom: { type: String, default: "1rem" },
+    bottom: { type: String, default: "1.5rem" },
     left: { type: String, default: "" },
-    right: { type: String, default: "1rem" },
-    mainColor: { type: String, default: "#00258b" },
-    secondaryColor: { type: String, default: "#000000" },
-    maxChars: { type: Number, default: 200 }
+    right: { type: String, default: "1.5rem" },
+    mainColor: { type: String, default: "#3b82f6" },
+    secondaryColor: { type: String, default: "#ffffff" },
+    maxChars: { type: Number, default: 200 },
+    darkMode: { type: Boolean, default: !1 },
+    autoDetectTheme: { type: Boolean, default: !0 }
   },
   emits: ["openContact", "send"],
-  setup(t, { emit: x }) {
-    const r = t, g = x, a = d(!1), c = d(r.contacts[0]), i = d(""), p = k(() => ({
-      background: r.mainColor,
-      color: r.secondaryColor,
-      padding: "0.25rem 0.5rem",
-      borderRadius: "0.25rem",
-      whiteSpace: "nowrap"
-    })), w = () => {
-      r.chatInWindow ? a.value = !a.value : g("openContact");
+  setup(e, { emit: r }) {
+    const o = e, l = r, a = v(!1), t = v(o.darkMode), s = x(() => ({
+      top: o.top,
+      bottom: o.bottom,
+      left: o.left,
+      right: o.right,
+      position: "fixed",
+      display: "flex",
+      alignItems: "center",
+      gap: "0.75rem",
+      zIndex: 9999
+    })), i = x(() => ({
+      backgroundColor: t.value ? "rgba(255, 255, 255, 0.1)" : o.mainColor,
+      color: t.value ? "#ffffff" : o.secondaryColor,
+      backdropFilter: t.value ? "blur(10px)" : "none",
+      border: t.value ? "1px solid rgba(255, 255, 255, 0.2)" : "none"
+    })), c = () => {
+      o.chatInWindow ? a.value = !a.value : l("openContact");
+    }, m = (k) => {
+      l("send", k), a.value = !1;
+    }, w = () => {
+      if (o.autoDetectTheme) {
+        const k = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        t.value = k;
+      } else
+        t.value = o.darkMode;
     };
-    return (h, e) => (l(), n("div", {
-      class: "contact-button-wrapper",
-      style: u({
-        top: t.top,
-        bottom: t.bottom,
-        left: t.left,
-        right: t.right,
-        position: "fixed",
-        display: "flex",
-        alignItems: "center",
-        gap: "0.5rem",
-        zIndex: 9999
-      })
+    return D(() => {
+      w(), o.autoDetectTheme && window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", w);
+    }), (k, h) => (u(), f("div", {
+      class: d(["contact-button-wrapper", { "dark-mode": t.value }]),
+      style: M(s.value)
     }, [
-      t.floatText && !a.value ? v(h.$slots, "floatText", { key: 0 }, () => [
-        s("span", {
-          class: "float-text",
-          style: u(p.value)
-        }, f(t.floatText), 5)
-      ]) : m("", !0),
-      s("button", {
-        class: b(["contact-button", { "contact-button-close": a.value }]),
-        style: u({
-          backgroundColor: t.mainColor,
-          color: t.secondaryColor
-        }),
-        onClick: w
+      e.floatText ? (u(), b(F, {
+        key: 0,
+        text: e.floatText,
+        mainColor: e.mainColor,
+        secondaryColor: e.secondaryColor,
+        isDarkMode: t.value
+      }, null, 8, ["text", "mainColor", "secondaryColor", "isDarkMode"])) : p("", !0),
+      n("button", {
+        class: d(["contact-button", {
+          "contact-button-close": a.value,
+          "dark-mode": t.value
+        }]),
+        style: M(i.value),
+        onClick: c
       }, [
-        a.value ? (l(), n("img", V)) : v(h.$slots, "default", { key: 0 }, () => [
-          e[3] || (e[3] = s("img", {
-            src: I,
+        a.value ? (u(), f("svg", Q, h[1] || (h[1] = [
+          n("path", {
+            d: "M18 6L6 18M6 6l12 12",
+            stroke: "currentColor",
+            "stroke-width": "2",
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round"
+          }, null, -1)
+        ]))) : j(k.$slots, "default", { key: 0 }, () => [
+          h[0] || (h[0] = n("svg", {
             width: "28",
-            height: "28"
-          }, null, -1))
-        ])
-      ], 6),
-      a.value && t.chatInWindow ? (l(), n("div", z, [
-        t.contacts.length > 1 ? (l(), n("div", E, [
-          y(s("select", {
-            class: "contact-radio",
-            "onUpdate:modelValue": e[0] || (e[0] = (o) => c.value = o)
+            height: "28",
+            viewBox: "0 0 24 24",
+            fill: "none"
           }, [
-            (l(!0), n(S, null, L(t.contacts, (o) => (l(), n("option", {
-              key: o,
-              value: o,
-              textContent: f(o)
-            }, null, 8, N))), 128))
-          ], 512), [
-            [B, c.value]
-          ])
-        ])) : m("", !0),
-        y(s("textarea", {
-          "onUpdate:modelValue": e[1] || (e[1] = (o) => i.value = o),
-          maxlength: t.maxChars,
-          class: "chat-textarea",
-          placeholder: "Escribe tu mensaje..."
-        }, null, 8, W), [
-          [T, i.value]
-        ]),
-        s("button", {
-          class: "chat-send",
-          onClick: e[2] || (e[2] = (o) => g("send", { contact: c.value, message: i.value }))
-        }, " Enviar ")
-      ])) : m("", !0)
-    ], 4));
+            n("path", {
+              d: "M7 8h10M7 12h6m-6 8l-4-4H3a1 1 0 01-1-1V5a1 1 0 011-1h18a1 1 0 011 1v10a1 1 0 01-1 1H9l-2 2z",
+              stroke: "currentColor",
+              "stroke-width": "1.5",
+              "stroke-linecap": "round",
+              "stroke-linejoin": "round"
+            })
+          ], -1))
+        ], !0)
+      ], 6),
+      a.value && e.chatInWindow ? (u(), b(O, {
+        key: 1,
+        contacts: e.contacts,
+        maxChars: e.maxChars,
+        isDarkMode: t.value,
+        onSend: m
+      }, null, 8, ["contacts", "maxChars", "isDarkMode"])) : p("", !0)
+    ], 6));
   }
-});
+}), G = /* @__PURE__ */ C(K, [["__scopeId", "data-v-a8ce6e3f"]]);
 export {
-  j as ContactButton
+  O as ChatWindow,
+  G as ContactButton,
+  N as ContactSelector,
+  F as FloatText
 };
