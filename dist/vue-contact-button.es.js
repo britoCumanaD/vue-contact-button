@@ -1,5 +1,5 @@
-import { defineComponent as g, ref as v, computed as x, onMounted as D, createElementBlock as f, createCommentVNode as p, openBlock as u, normalizeClass as d, createElementVNode as n, normalizeStyle as M, toDisplayString as y, watch as B, withDirectives as S, Fragment as T, renderList as V, vModelSelect as I, createBlock as b, vModelText as L, createTextVNode as $, renderSlot as j } from "vue";
-const E = /* @__PURE__ */ g({
+import { defineComponent as C, ref as h, computed as p, onMounted as b, createElementBlock as f, createCommentVNode as y, openBlock as c, normalizeClass as d, createElementVNode as a, normalizeStyle as x, toDisplayString as g, watch as S, withDirectives as D, Fragment as B, renderList as T, vModelSelect as V, createBlock as M, vModelText as L, createTextVNode as $, renderSlot as I } from "vue";
+const j = /* @__PURE__ */ C({
   __name: "FloatText",
   props: {
     text: { type: String, required: !0 },
@@ -8,36 +8,31 @@ const E = /* @__PURE__ */ g({
     isDarkMode: { type: Boolean, default: !1 }
   },
   setup(e) {
-    const r = e, o = v(!1), l = `float-text-dismissed-${r.text}`, a = x(() => ({
-      background: r.isDarkMode ? "rgba(255, 255, 255, 0.1)" : r.mainColor,
-      color: r.isDarkMode ? "#ffffff" : r.secondaryColor,
-      backdropFilter: r.isDarkMode ? "blur(10px)" : "none",
-      border: r.isDarkMode ? "1px solid rgba(255, 255, 255, 0.2)" : "none"
+    const l = e, o = h(!1), s = `float-text-dismissed-${l.text}`, n = p(() => ({
+      background: l.isDarkMode ? "rgba(255, 255, 255, 0.1)" : l.mainColor,
+      color: l.isDarkMode ? "#ffffff" : l.secondaryColor,
+      backdropFilter: l.isDarkMode ? "blur(10px)" : "none",
+      border: l.isDarkMode ? "1px solid rgba(255, 255, 255, 0.2)" : "none"
     })), t = () => {
-      o.value = !0, sessionStorage.setItem(l, "true");
+      o.value = !0, sessionStorage.setItem(s, "true");
     };
-    return D(() => {
-      sessionStorage.getItem(l) === "true" && (o.value = !0);
-    }), (s, i) => e.text && !o.value ? (u(), f("div", {
+    return b(() => {
+      sessionStorage.getItem(s) === "true" && (o.value = !0);
+    }), (r, i) => e.text && !o.value ? (c(), f("div", {
       key: 0,
       class: d(["float-text-container", { "dark-mode": e.isDarkMode }])
     }, [
-      n("span", {
+      a("span", {
         class: "float-text",
-        style: M(a.value)
-      }, y(e.text), 5),
-      n("button", {
+        style: x(n.value)
+      }, g(e.text), 5),
+      a("button", {
         class: d(["float-text-close", { "dark-mode": e.isDarkMode }]),
         onClick: t
       }, " × ", 2)
-    ], 2)) : p("", !0);
+    ], 2)) : y("", !0);
   }
-}), C = (e, r) => {
-  const o = e.__vccOpts || e;
-  for (const [l, a] of r)
-    o[l] = a;
-  return o;
-}, F = /* @__PURE__ */ C(E, [["__scopeId", "data-v-90e46ec0"]]), W = ["value"], A = /* @__PURE__ */ g({
+}), E = ["value"], F = /* @__PURE__ */ C({
   __name: "ContactSelector",
   props: {
     contacts: { type: Array, required: !0 },
@@ -45,43 +40,43 @@ const E = /* @__PURE__ */ g({
     isDarkMode: { type: Boolean, default: !1 }
   },
   emits: ["update:modelValue"],
-  setup(e, { emit: r }) {
-    const o = e, l = v(o.modelValue);
-    B(() => o.modelValue, (t) => {
-      l.value = t;
+  setup(e, { emit: l }) {
+    const o = e, s = h(o.modelValue);
+    S(() => o.modelValue, (t) => {
+      s.value = t;
     });
-    const a = (t) => ({
+    const n = (t) => ({
       email: "📧 Email",
       whatsapp: "📱 WhatsApp",
       telegram: "✈️ Telegram",
       phone: "📞 Teléfono",
       linkedin: "💼 LinkedIn"
     })[t] || t.charAt(0).toUpperCase() + t.slice(1);
-    return (t, s) => (u(), f("div", {
+    return (t, r) => (c(), f("div", {
       class: d(["contact-selector", { "dark-mode": e.isDarkMode }])
     }, [
-      S(n("select", {
-        "onUpdate:modelValue": s[0] || (s[0] = (i) => l.value = i),
+      D(a("select", {
+        "onUpdate:modelValue": r[0] || (r[0] = (i) => s.value = i),
         class: d(["contact-select", { "dark-mode": e.isDarkMode }]),
-        onChange: s[1] || (s[1] = (i) => t.$emit("update:modelValue", l.value))
+        onChange: r[1] || (r[1] = (i) => t.$emit("update:modelValue", s.value))
       }, [
-        (u(!0), f(T, null, V(e.contacts, (i) => (u(), f("option", {
+        (c(!0), f(B, null, T(e.contacts, (i) => (c(), f("option", {
           key: i,
           value: i
-        }, y(a(i)), 9, W))), 128))
+        }, g(n(i)), 9, E))), 128))
       ], 34), [
-        [I, l.value]
+        [V, s.value]
       ]),
-      n("div", {
+      a("div", {
         class: d(["select-arrow", { "dark-mode": e.isDarkMode }])
-      }, s[2] || (s[2] = [
-        n("svg", {
+      }, r[2] || (r[2] = [
+        a("svg", {
           width: "12",
           height: "8",
           viewBox: "0 0 12 8",
           fill: "none"
         }, [
-          n("path", {
+          a("path", {
             d: "M1 1L6 6L11 1",
             stroke: "currentColor",
             "stroke-width": "2",
@@ -92,7 +87,7 @@ const E = /* @__PURE__ */ g({
       ]), 2)
     ], 2));
   }
-}), N = /* @__PURE__ */ C(A, [["__scopeId", "data-v-6f92f3f5"]]), q = { class: "message-input-container" }, z = ["maxlength"], U = ["disabled"], H = /* @__PURE__ */ g({
+}), W = { class: "message-input-container" }, A = ["maxlength"], N = ["disabled"], q = /* @__PURE__ */ C({
   __name: "ChatWindow",
   props: {
     contacts: { type: Array, required: !0 },
@@ -100,56 +95,56 @@ const E = /* @__PURE__ */ g({
     isDarkMode: { type: Boolean, default: !1 }
   },
   emits: ["send"],
-  setup(e, { emit: r }) {
-    const o = e, l = r, a = v(o.contacts[0]), t = v(""), s = () => {
-      t.value.trim() && (l("send", { contact: a.value, message: t.value }), t.value = "");
+  setup(e, { emit: l }) {
+    const o = e, s = l, n = h(o.contacts[0]), t = h(""), r = () => {
+      t.value.trim() && (s("send", { contact: n.value, message: t.value }), t.value = "");
     };
-    return (i, c) => (u(), f("div", {
+    return (i, u) => (c(), f("div", {
       class: d(["chat-window", { "dark-mode": e.isDarkMode }])
     }, [
-      e.contacts.length > 1 ? (u(), b(N, {
+      e.contacts.length > 1 ? (c(), M(F, {
         key: 0,
         contacts: e.contacts,
-        modelValue: a.value,
+        modelValue: n.value,
         "onUpdate:modelValue": [
-          c[0] || (c[0] = (m) => a.value = m),
-          c[1] || (c[1] = (m) => a.value = m)
+          u[0] || (u[0] = (m) => n.value = m),
+          u[1] || (u[1] = (m) => n.value = m)
         ],
         isDarkMode: e.isDarkMode
-      }, null, 8, ["contacts", "modelValue", "isDarkMode"])) : p("", !0),
-      n("div", q, [
-        S(n("textarea", {
-          "onUpdate:modelValue": c[2] || (c[2] = (m) => t.value = m),
+      }, null, 8, ["contacts", "modelValue", "isDarkMode"])) : y("", !0),
+      a("div", W, [
+        D(a("textarea", {
+          "onUpdate:modelValue": u[2] || (u[2] = (m) => t.value = m),
           maxlength: e.maxChars,
           class: d(["chat-textarea", { "dark-mode": e.isDarkMode }]),
           placeholder: "Escribe tu mensaje...",
           rows: "3"
-        }, null, 10, z), [
+        }, null, 10, A), [
           [L, t.value]
         ]),
-        n("div", {
+        a("div", {
           class: d(["char-counter", { "dark-mode": e.isDarkMode }])
-        }, y(t.value.length) + "/" + y(e.maxChars), 3)
+        }, g(t.value.length) + "/" + g(e.maxChars), 3)
       ]),
-      n("button", {
+      a("button", {
         class: d(["chat-send", { "dark-mode": e.isDarkMode, disabled: !t.value.trim() }]),
         disabled: !t.value.trim(),
-        onClick: s
-      }, c[3] || (c[3] = [
-        n("svg", {
+        onClick: r
+      }, u[3] || (u[3] = [
+        a("svg", {
           width: "16",
           height: "16",
           viewBox: "0 0 24 24",
           fill: "none"
         }, [
-          n("path", {
+          a("path", {
             d: "M22 2L11 13",
             stroke: "currentColor",
             "stroke-width": "2",
             "stroke-linecap": "round",
             "stroke-linejoin": "round"
           }),
-          n("path", {
+          a("path", {
             d: "M22 2L15 22L11 13L2 9L22 2Z",
             stroke: "currentColor",
             "stroke-width": "2",
@@ -158,16 +153,16 @@ const E = /* @__PURE__ */ g({
           })
         ], -1),
         $(" Enviar ")
-      ]), 10, U)
+      ]), 10, N)
     ], 2));
   }
-}), O = /* @__PURE__ */ C(H, [["__scopeId", "data-v-cb758fbf"]]), Q = {
+}), z = {
   key: 1,
   width: "16",
   height: "16",
   viewBox: "0 0 24 24",
   fill: "none"
-}, K = /* @__PURE__ */ g({
+}, H = /* @__PURE__ */ C({
   __name: "ContactButton",
   props: {
     label: { type: String, default: "" },
@@ -185,8 +180,8 @@ const E = /* @__PURE__ */ g({
     autoDetectTheme: { type: Boolean, default: !0 }
   },
   emits: ["openContact", "send"],
-  setup(e, { emit: r }) {
-    const o = e, l = r, a = v(!1), t = v(o.darkMode), s = x(() => ({
+  setup(e, { emit: l }) {
+    const o = e, s = l, n = h(!1), t = h(o.darkMode), r = p(() => ({
       top: o.top,
       bottom: o.bottom,
       left: o.left,
@@ -196,15 +191,15 @@ const E = /* @__PURE__ */ g({
       alignItems: "center",
       gap: "0.75rem",
       zIndex: 9999
-    })), i = x(() => ({
+    })), i = p(() => ({
       backgroundColor: t.value ? "rgba(255, 255, 255, 0.1)" : o.mainColor,
       color: t.value ? "#ffffff" : o.secondaryColor,
       backdropFilter: t.value ? "blur(10px)" : "none",
       border: t.value ? "1px solid rgba(255, 255, 255, 0.2)" : "none"
-    })), c = () => {
-      o.chatInWindow ? a.value = !a.value : l("openContact");
+    })), u = () => {
+      o.chatInWindow ? n.value = !n.value : s("openContact");
     }, m = (k) => {
-      l("send", k), a.value = !1;
+      s("send", k), n.value = !1;
     }, w = () => {
       if (o.autoDetectTheme) {
         const k = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -212,43 +207,43 @@ const E = /* @__PURE__ */ g({
       } else
         t.value = o.darkMode;
     };
-    return D(() => {
+    return b(() => {
       w(), o.autoDetectTheme && window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", w);
-    }), (k, h) => (u(), f("div", {
+    }), (k, v) => (c(), f("div", {
       class: d(["contact-button-wrapper", { "dark-mode": t.value }]),
-      style: M(s.value)
+      style: x(r.value)
     }, [
-      e.floatText ? (u(), b(F, {
+      e.floatText ? (c(), M(j, {
         key: 0,
         text: e.floatText,
         mainColor: e.mainColor,
         secondaryColor: e.secondaryColor,
         isDarkMode: t.value
-      }, null, 8, ["text", "mainColor", "secondaryColor", "isDarkMode"])) : p("", !0),
-      n("button", {
+      }, null, 8, ["text", "mainColor", "secondaryColor", "isDarkMode"])) : y("", !0),
+      a("button", {
         class: d(["contact-button", {
-          "contact-button-close": a.value,
+          "contact-button-close": n.value,
           "dark-mode": t.value
         }]),
-        style: M(i.value),
-        onClick: c
+        style: x(i.value),
+        onClick: u
       }, [
-        a.value ? (u(), f("svg", Q, h[1] || (h[1] = [
-          n("path", {
+        n.value ? (c(), f("svg", z, v[1] || (v[1] = [
+          a("path", {
             d: "M18 6L6 18M6 6l12 12",
             stroke: "currentColor",
             "stroke-width": "2",
             "stroke-linecap": "round",
             "stroke-linejoin": "round"
           }, null, -1)
-        ]))) : j(k.$slots, "default", { key: 0 }, () => [
-          h[0] || (h[0] = n("svg", {
+        ]))) : I(k.$slots, "default", { key: 0 }, () => [
+          v[0] || (v[0] = a("svg", {
             width: "28",
             height: "28",
             viewBox: "0 0 24 24",
             fill: "none"
           }, [
-            n("path", {
+            a("path", {
               d: "M7 8h10M7 12h6m-6 8l-4-4H3a1 1 0 01-1-1V5a1 1 0 011-1h18a1 1 0 011 1v10a1 1 0 01-1 1H9l-2 2z",
               stroke: "currentColor",
               "stroke-width": "1.5",
@@ -256,21 +251,21 @@ const E = /* @__PURE__ */ g({
               "stroke-linejoin": "round"
             })
           ], -1))
-        ], !0)
+        ])
       ], 6),
-      a.value && e.chatInWindow ? (u(), b(O, {
+      n.value && e.chatInWindow ? (c(), M(q, {
         key: 1,
         contacts: e.contacts,
         maxChars: e.maxChars,
         isDarkMode: t.value,
         onSend: m
-      }, null, 8, ["contacts", "maxChars", "isDarkMode"])) : p("", !0)
+      }, null, 8, ["contacts", "maxChars", "isDarkMode"])) : y("", !0)
     ], 6));
   }
-}), G = /* @__PURE__ */ C(K, [["__scopeId", "data-v-a8ce6e3f"]]);
+});
 export {
-  O as ChatWindow,
-  G as ContactButton,
-  N as ContactSelector,
-  F as FloatText
+  q as ChatWindow,
+  H as ContactButton,
+  F as ContactSelector,
+  j as FloatText
 };
